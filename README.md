@@ -4,11 +4,10 @@
 
 Libray based on `bus` component from [esp-iot-solution](https://github.com/espressif/esp-iot-solution) repo.
 
-Changes:
+Differences:
 * Implements `i2c_master_write_to_device` for write operations.
 * Implements `i2c_master_write_read_device` for write-read operations.
 * Can be added to the project components cloning the repo.
-* The i2c bus config is set from the main app.
 * Remove old implementations of write and read operations.
 
 To do:
@@ -79,7 +78,7 @@ void <My_Sensor_Class>::writeRegister(uint8_t reg, uint8_t val)
 void <My_Sensor_Class>::readRegister(uint8_t *outputPointer, uint8_t reg, uint8_t length)
 {
     reg |= 0x80; //turn auto-increment bit on, bit 7 for I2C
-    i2c_read(i2c_dev, &reg, 1, outputPointer, length);
+    i2c_read(i2c_dev, &reg, outputPointer, length);
 }
 ```
 
